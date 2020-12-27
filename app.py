@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request, render_template, url_for, redirect
 import pickle
 import pandas as pd
 import xgboost as xgb
+import os
 
 app = Flask(__name__, template_folder='templates')
 
@@ -31,7 +32,7 @@ def hello():
     return "hi"
 
 
-@app.route('/predict')
+@app.route('/')
 def index():
     return render_template('predict.html')
 
@@ -86,4 +87,5 @@ def upload_file1():
 if __name__ == "__main__":
     print('starting flask app')
     load_model()
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
