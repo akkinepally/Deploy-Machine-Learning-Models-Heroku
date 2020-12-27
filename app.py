@@ -86,4 +86,4 @@ def upload_file1():
 if __name__ == "__main__":
     print('starting flask app')
     load_model()
-    app.run()
+    app.run(debug=True)
